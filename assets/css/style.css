@@ -490,6 +490,32 @@
   /* ─── EDUCATION ─── */
   #education { background: var(--bg2); }
 
+  .timeline { position: relative; padding-left: 2rem; }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--teal), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding: 0 0 3rem 2.5rem;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -0.35rem;
+    top: 0.35rem;
+    width: 8px;
+    height: 8px;
+    background: var(--teal);
+    transform: rotate(45deg);
+  }
+
   .timeline-year {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem;
@@ -512,6 +538,13 @@
     font-size: 0.75rem;
     color: var(--teal);
     margin-bottom: 0.75rem;
+  }
+
+  .timeline-study {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    max-width: 600px;
   }
 
   /* ─── CONTACT ─── */

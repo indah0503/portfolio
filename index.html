@@ -154,29 +154,29 @@
   <h2>Mini Projects</h2>
   
   <div class="mini-grid">
-    <button class="mini-card" data-target="/cloud-engineering.html">
+    <a href="/cloud-engineering.html" class="mini-card">
       <div class="mini-title">Cloud Engineering</div>
-    </button>
+    </a>
     
-    <button class="mini-card" data-target="/network-engineering.html">
+    <a href="/network-engineering.html" class="mini-card">
       <div class="mini-title">Network Engineering</div>
-    </button>
+    </a>
     
-    <button class="mini-card" data-target="/iot-engineering.html">
+    <a href="/iot-engineering.html" class="mini-card">
       <div class="mini-title">IoT Engineering</div>
-    </button>
+    </a>
     
-    <button class="mini-card" data-target="/data-analytics.html">
+    <a href="/data-analytics.html" button class="mini-card">
       <div class="mini-title">Data Analyst</div>
-    </button>
+    </a>
     
-    <button class="mini-card" data-target="/security-analytics.html">
+    <a href="/security-analyst.html" button class="mini-card">
       <div class="mini-title">Security Analyst</div>
-    </button>
+    </a>
 
-    <button class="mini-card" data-target="/container.html">
+    <a href="/docker-admin.html" button class="mini-card">
       <div class="mini-title">Docker Administration</div>
-    </button>
+    </a>
   </div>
 </section>
 
@@ -388,14 +388,6 @@ revealEls.forEach(el => observer.observe(el));
 document.querySelectorAll('.skill-fill').forEach(bar => {
   const pct = parseFloat(bar.dataset.pct);
   bar.style.width = (pct * 100) + '%';
-});
-
-document.addEventListener('click', function (e) {
-  const btn = e.target.closest('.project-card.compact');
-  if (!btn) return;
-  const target = btn.dataset.target;
-  if (!target) return;
-  window.location.href = target;
 });
 </script>
 </body>

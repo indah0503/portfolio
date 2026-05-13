@@ -403,7 +403,13 @@
     text-decoration: none;
     cursor: pointer;
     transition: border-color 0.25s, background 0.25s, transform 0.16s;
+    user-select: none;
+    color: inherit;
+    border: none;
+    width: 100%;
   }
+
+  .mini-card:focus { outline: 2px solid rgba(0,229,195,0.16); outline-offset: 2px; }
 
   .mini-card:hover {
     border-top-color: var(--teal);
@@ -427,10 +433,6 @@
     letter-spacing: 0.02em;
   }
 
-  .mini-card .mini-type,
-  .mini-card .mini-desc,
-  .mini-card .mini-stack { display: none !important; }
-
   @media (max-width: 1100px) {
     .mini-grid { grid-template-columns: repeat(2, 1fr); }
     .mini-card { height: 96px; padding: 1rem; }
@@ -440,7 +442,6 @@
 
   @media (max-width: 600px) {
     .mini-grid { grid-template-columns: 1fr; }
-    #mini-projects { padding: 2rem 1.5rem; }
   }
 
   /* ─── SKILL BARS ─── */

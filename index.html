@@ -154,31 +154,35 @@
   <h2>Mini Projects</h2>
   
   <div class="mini-grid">
-    <a href="/cloud-engineering.html" class="mini-card">
+    <button class="mini-card" data-target="/cloud-engineering.html">
       <div class="mini-title">Cloud Engineering</div>
-    </a>
+    </button>
     
-    <a href="/linux-sysadmin.html" class="mini-card">
-      <div class="mini-title">Linux System Administration</div>
-    </a>
-    
-    <a href="/network-engineering.html" class="mini-card">
+    <button class="mini-card" data-target="/network-engineering.html">
       <div class="mini-title">Network Engineering</div>
-    </a>
+    </button>
     
-    <a href="/iot-engineering.html" class="mini-card">
+    <button class="mini-card" data-target="/iot-engineering.html">
       <div class="mini-title">IoT Engineering</div>
-    </a>
+    </button>
     
-    <a href="/data-analytics.html" class="mini-card">
+    <button class="mini-card" data-target="/data-analytics.html">
       <div class="mini-title">Data Analyst</div>
-    </a>
+    </button>
+    
+    <button class="mini-card" data-target="/security-analytics.html">
+      <div class="mini-title">Security Analyst</div>
+    </button>
+
+    <button class="mini-card" data-target="/container.html">
+      <div class="mini-title">Docker Administration</div>
+    </button>
   </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-label">03 // Skills</div>
+  <div class="section-label">04 // Skills</div>
   <h2>Technical Proficiency</h2>
 
   <div class="skills-layout">
@@ -223,7 +227,7 @@
 
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">04 // Experience</div>
+  <div class="section-label">05 // Experience</div>
   <h2>Work History</h2>
 
   <div class="timeline reveal">
@@ -254,7 +258,7 @@
 
 <!-- EDUCATION -->
 <section id="education">
-  <div class="section-label">05 // Education</div>
+  <div class="section-label">06 // Education</div>
   <h2>Education History</h2>
   
   <div class="timeline reveal">
@@ -274,7 +278,6 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label" style="justify-content:center">06 // Contact</div>
   <div class="contact-big">
     Let's Build<br><span>Something</span><br>Great.
   </div>
@@ -385,6 +388,14 @@ revealEls.forEach(el => observer.observe(el));
 document.querySelectorAll('.skill-fill').forEach(bar => {
   const pct = parseFloat(bar.dataset.pct);
   bar.style.width = (pct * 100) + '%';
+});
+
+document.addEventListener('click', function (e) {
+  const btn = e.target.closest('.project-card.compact');
+  if (!btn) return;
+  const target = btn.dataset.target;
+  if (!target) return;
+  window.location.href = target;
 });
 </script>
 </body>

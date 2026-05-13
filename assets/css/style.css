@@ -101,7 +101,7 @@
 
   h1 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2rem, 4vw, 4rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
     font-weight: 800;
     line-height: 0.92;
     letter-spacing: -0.02em;

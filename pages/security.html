@@ -1,1 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Analyst Projects</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #161616;
+      --bg4: #0d0d0d;
+      --teal: #2dd4bf;
+      --amber: #fbbf24;
+      --text-muted: #888;
+    }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ─── HEADER ─── */
+    .page-header {
+      padding: 4rem 4rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .page-header-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--amber);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .page-header-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1;
+    }
+    .page-header-title span { color: var(--teal); }
+
+    /* ─── PROJECTS LIST ─── */
+    .projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5px;
+      padding: 1.5px 0;
+    }
+
+    /* wrapper holds row + sub-list */
+    .project-item { position: relative; }
+
+    .project-row {
+      background: var(--bg2);
+      padding: 2rem 4rem;
+      border-left: 2px solid transparent;
+      transition: border-color 0.25s, background 0.25s;
+      cursor: pointer;
+      display: grid;
+      grid-template-columns: 5rem 1fr auto;
+      grid-template-rows: auto auto auto;
+      column-gap: 2rem;
+      align-items: start;
+      user-select: none;
+    }
+    .project-row:hover {
+      border-left-color: var(--teal);
+      background: var(--bg3);
+    }
+    .project-item.open .project-row {
+      border-left-color: var(--teal);
+      background: var(--bg3);
+    }
+
+    /* number */
+    .project-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: rgba(255,255,255,0.04);
+      line-height: 1;
+      grid-row: 1 / 4;
+      grid-column: 1;
+      align-self: center;
+      transition: color 0.25s;
+    }
+    .project-item.open .project-num { color: rgba(45,212,191,0.08); }
+
+    /* middle column */
+    .project-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--amber);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      grid-column: 2;
+      grid-row: 1;
+      margin-bottom: 0.4rem;
+    }
+    .project-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+      grid-column: 2;
+      grid-row: 2;
+      margin-bottom: 0.6rem;
+    }
+    .project-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      grid-column: 2;
+      grid-row: 3;
+    }
+
+    /* right column */
+    .project-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      grid-column: 3;
+      grid-row: 1 / 4;
+      align-self: center;
+      min-width: 140px;
+      align-items: flex-end;
+    }
+    .stack-chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.2rem 0.5rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    /* toggle indicator */
+    .project-toggle {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--teal);
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      grid-column: 3;
+      grid-row: 1;
+      justify-content: flex-end;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .toggle-arrow {
+      display: inline-block;
+      transition: transform 0.3s ease;
+      font-size: 0.85rem;
+    }
+    .project-row:hover .project-toggle { opacity: 1; }
+    .project-item.open .project-row .project-toggle { opacity: 1; }
+    .project-item.open .toggle-arrow { transform: rotate(180deg); }
+
+    /* ─── SUB LIST ─── */
+    .sub-list {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease;
+      opacity: 0;
+      background: var(--bg4);
+      border-left: 2px solid var(--teal);
+    }
+    .project-item.open .sub-list {
+      max-height: 600px;
+      opacity: 1;
+    }
+
+    .sub-inner {
+      padding: 1rem 4rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .sub-section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      padding: 0.4rem 0 0.6rem 5rem;
+    }
+
+    .sub-item {
+      display: grid;
+      grid-template-columns: 5rem 1fr auto;
+      column-gap: 2rem;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      background: transparent;
+    }
+    .sub-item:last-child { border-bottom: none; }
+    .sub-item:hover { background: rgba(45,212,191,0.04); }
+
+    .sub-item-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.12);
+      text-align: right;
+      padding-right: 0;
+      letter-spacing: 0.05em;
+    }
+
+    .sub-item-body { display: flex; flex-direction: column; gap: 2px; }
+
+    .sub-item-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #e5e5e5;
+      transition: color 0.15s;
+    }
+    .sub-item:hover .sub-item-title { color: var(--teal); }
+
+    .sub-item-desc {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.05em;
+    }
+
+    .sub-item-arrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.2);
+      transition: color 0.15s, transform 0.15s;
+      text-align: right;
+      min-width: 140px;
+    }
+    .sub-item:hover .sub-item-arrow {
+      color: var(--teal);
+      transform: translate(3px,-3px);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="page-header">
+    <div class="page-header-label">Portfolio — Selected Works</div>
+    <div class="page-header-title">Cloud <span>Computing</span> Projects</div>
+  </header>
+
+  <section class="projects-list">
+
+    <!-- ── Project 01 ── -->
+    <div class="project-item" id="item1">
+      <div class="project-row" onclick="toggleItem('item1')">
+        <div class="project-num">01</div>
+        <div class="project-type">Penetration Tester / Red Team</div>
+        <div class="project-title">Hacktrace Report</div>
+        <p class="project-desc">
+          Short description of the project. Explain what was built, what problem it solves,
+          and the impact or outcome of the work.
+        </p>
+        <div class="project-stack">
+          <div class="project-toggle">LINKS <span class="toggle-arrow">↓</span></div>
+        </div>
+      </div>
+      <div class="sub-list">
+        <div class="sub-inner">
+          <div class="sub-section-label">— Related Links</div>
+          <a class="sub-item" href="https://github.com/" target="_blank">
+            <div class="sub-item-num">→ 01</div>
+            <div class="sub-item-body">
+              <div class="sub-item-title">Tartarus</div>
+              <div class="sub-item-desc">Documentation</div>
+            </div>
+            <div class="sub-item-arrow">↗ github.com</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+    function toggleItem(id) {
+      const item = document.getElementById(id);
+      const isOpen = item.classList.contains('open');
+
+      // close all
+      document.querySelectorAll('.project-item.open').forEach(el => el.classList.remove('open'));
+
+      // open clicked if it wasn't already open
+      if (!isOpen) item.classList.add('open');
+    }
+  </script>
+
+</body>
+</html>

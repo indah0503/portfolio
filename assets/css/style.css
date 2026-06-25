@@ -101,7 +101,7 @@
 
   h1 {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-size: clamp(4rem, 5vw, 4rem);
     font-weight: 800;
     line-height: 0.92;
     letter-spacing: -0.02em;
@@ -110,7 +110,7 @@
   }
 
   h1 .line-accent { color: var(--teal); }
-  h1 .line-dim { color: var(--text-muted); font-weight: 300; }
+  h1 .line-dim { color: var(--text-muted); font-weight: 150px; }
 
   .hero-desc {
     font-size: 1.05rem;

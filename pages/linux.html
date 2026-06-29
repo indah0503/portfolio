@@ -1,1 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linux SysAdmin — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #161616;
+      --teal: #2dd4bf;
+      --amber: #fbbf24;
+      --text-muted: #888;
+    }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .page-header-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--amber);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header-title span { color: var(--teal); }
+
+    .page-header-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .challenge {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .challenge:last-child { border-bottom: none; }
+
+    .challenge-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--amber);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .challenge-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.2rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.2rem 0.5rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: baseline;
+    }
+
+    .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--teal);
+      opacity: 0.6;
+      flex-shrink: 0;
+      min-width: 1.5rem;
+    }
+
+    .step-text {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .cmd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--teal);
+      background: rgba(45, 212, 191, 0.07);
+      border: 1px solid rgba(45, 212, 191, 0.15);
+      padding: 0.1rem 0.4rem;
+    }
+
+    .outcome {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: #4ade80;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .outcome::before {
+      content: '';
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #4ade80;
+    }
+
+    .footer {
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.18);
+      letter-spacing: 0.08em;
+    }
+
+    .footer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="page-header-label">Hands-on Lab · adinusa.id</p>
+    <h1 class="page-header-title">Linux <span>Sysadmin</span></h1>
+    <p class="page-header-sub">Ubuntu 24.04 &nbsp;·&nbsp; Apache2 · grep · find · fdisk · diff · useradd</p>
+  </header>
+
+  <!-- 01 -->
+  <section class="challenge">
+    <p class="challenge-label">Quiz · Troubleshooting</p>
+    <h2 class="challenge-title">Apache2 Service Failure &amp; 403 Fix</h2>
+    <div class="chip-row">
+      <span class="chip">Apache2</span>
+      <span class="chip">systemctl</span>
+      <span class="chip">vim</span>
+      <span class="chip">mod_ssl</span>
+      <span class="chip">VirtualHost</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Detected connection failure with <span class="cmd">curl http://localhost</span> — port 80 unreachable.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Checked <span class="cmd">systemctl status apache2</span>: syntax error on line 148 of <span class="cmd">apache2.conf</span> — bare <span class="cmd">SSLEngine</span> directive with no value and no SSL module loaded.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">Fixed by setting <span class="cmd">SSLEngine off</span> and enabling the SSL module via <span class="cmd">a2enmod ssl</span>. Alternative: comment out the line entirely.</span></div>
+    <div class="step"><span class="step-num">04</span><span class="step-text">After restart, 403 persisted — no <span class="cmd">&lt;Directory&gt;</span> block in the VirtualHost. Apache defaults to deny-all.</span></div>
+    <div class="step"><span class="step-num">05</span><span class="step-text">Added <span class="cmd">Require all granted</span> inside a <span class="cmd">&lt;Directory /var/www/html&gt;</span> block in <span class="cmd">000-default.conf</span>, restarted Apache. Index page served successfully.</span></div>
+    <div class="outcome">Resolved — curl returns HTTP 200</div>
+  </section>
+
+  <!-- 02 -->
+  <section class="challenge">
+    <p class="challenge-label">Challenge 1 · Log Analysis</p>
+    <h2 class="challenge-title">Working with File Content</h2>
+    <div class="chip-row">
+      <span class="chip">grep</span>
+      <span class="chip">regex anchors</span>
+      <span class="chip">pipe</span>
+      <span class="chip">stdout redirect</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Extracted all INFO-level lines from <span class="cmd">sample1.log</span> using <span class="cmd">grep "INFO"</span> — saved to <span class="cmd">output1.log</span>.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Extracted lines starting with <em>illegal</em> from <span class="cmd">sample2.log</span> using the anchor <span class="cmd">grep "^illegal"</span> — saved to <span class="cmd">output2.log</span>.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">Combined two patterns — <span class="cmd">router_forward_getOI</span> and <span class="cmd">TRACE</span> level — via a pipeline of two <span class="cmd">grep</span> calls — saved to <span class="cmd">output3.log</span>.</span></div>
+    <div class="outcome">3 output files verified</div>
+  </section>
+
+  <!-- 03 -->
+  <section class="challenge">
+    <p class="challenge-label">Challenge 2 · File System</p>
+    <h2 class="challenge-title">Finding Files by Permission &amp; Size</h2>
+    <div class="chip-row">
+      <span class="chip">find</span>
+      <span class="chip">-perm</span>
+      <span class="chip">SUID / SGID</span>
+      <span class="chip">-size</span>
+      <span class="chip">-exec cp</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Found files with both SUID and SGID bits set using <span class="cmd">-perm -u=s,g=s</span> — saved absolute paths to <span class="cmd">suid.txt</span>.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Copied all files with mode <span class="cmd">0600</span> to <span class="cmd">backup/</span> using <span class="cmd">-exec cp {} dest \;</span>, preserving original permissions.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">Filtered files sized between 8K and 10K using <span class="cmd">-size +7k -size -11k</span> and copied them to <span class="cmd">size/</span>.</span></div>
+    <div class="step"><span class="step-num">04</span><span class="step-text">Found <span class="cmd">*.txt</span> files not owned by user <em>student</em> using <span class="cmd">-not -user student</span> — saved paths to <span class="cmd">extension.txt</span>.</span></div>
+    <div class="outcome">All 4 tasks completed</div>
+  </section>
+
+  <!-- 04 -->
+  <section class="challenge">
+    <p class="challenge-label">Challenge 3 · Storage</p>
+    <h2 class="challenge-title">Partition, Format &amp; Persistent Mount</h2>
+    <div class="chip-row">
+      <span class="chip">fdisk</span>
+      <span class="chip">mkfs.ext4</span>
+      <span class="chip">blkid</span>
+      <span class="chip">mount</span>
+      <span class="chip">/etc/fstab</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Created <span class="cmd">/dev/sdd1</span> (1 GiB) with <span class="cmd">fdisk /dev/sdd</span> — selected primary partition, set last sector to <span class="cmd">+1G</span>, wrote the table.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Formatted with <span class="cmd">mkfs.ext4 -L appcache /dev/sdd1</span>; confirmed UUID with <span class="cmd">blkid</span>.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">Created mount point <span class="cmd">/app</span> and mounted with <span class="cmd">mount LABEL=appcache /app</span>.</span></div>
+    <div class="step"><span class="step-num">04</span><span class="step-text">Added <span class="cmd">LABEL=appcache /app ext4 defaults,nofail 0 2</span> to <span class="cmd">/etc/fstab</span>; tested with <span class="cmd">mount -a</span>.</span></div>
+    <div class="outcome">Mounted at /app — persists across reboots</div>
+  </section>
+
+  <!-- 05 -->
+  <section class="challenge">
+    <p class="challenge-label">Challenge 4 · File Comparison</p>
+    <h2 class="challenge-title">Comparing Files &amp; Directories</h2>
+    <div class="chip-row">
+      <span class="chip">diff</span>
+      <span class="chip">--ignore-case</span>
+      <span class="chip">-r recursive</span>
+      <span class="chip">awk</span>
+      <span class="chip">grep</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Case-insensitive file comparison using <span class="cmd">diff --ignore-case fileA fileB</span> — redirected output to <span class="cmd">results01.txt</span>.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Recursive directory diff with <span class="cmd">diff -r compare01 compare02</span> piped through <span class="cmd">awk</span> to extract the absolute path of the single differing file — saved to <span class="cmd">results02.txt</span>.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">Found files unique to <span class="cmd">comdir02</span> by grepping diff output, then used <span class="cmd">awk '{print $4}'</span> to isolate bare filenames — saved to <span class="cmd">results03.txt</span>.</span></div>
+    <div class="outcome">3 result files produced</div>
+  </section>
+
+  <!-- 06 -->
+  <section class="challenge">
+    <p class="challenge-label">Challenge 5 · IAM</p>
+    <h2 class="challenge-title">User &amp; Group Account Management</h2>
+    <div class="chip-row">
+      <span class="chip">useradd</span>
+      <span class="chip">usermod</span>
+      <span class="chip">chage</span>
+      <span class="chip">groupadd</span>
+      <span class="chip">passwd</span>
+      <span class="chip">/etc/passwd</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Created users <span class="cmd">trainer1–3</span> with <span class="cmd">useradd -s /bin/bash</span>; set initial password via <span class="cmd">passwd</span>; added GECOS comments with <span class="cmd">usermod -c</span>.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Set maximum password age to 7 days for trainer1: <span class="cmd">chage -M 7 trainer1</span>.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">Locked trainer2 account: <span class="cmd">usermod --lock trainer2</span> — login returns authentication failure.</span></div>
+    <div class="step"><span class="step-num">04</span><span class="step-text">Forced trainer3 to change password on first login: <span class="cmd">chage -d 0 trainer3</span>.</span></div>
+    <div class="step"><span class="step-num">05</span><span class="step-text">Created group <span class="cmd">coaches</span> via <span class="cmd">groupadd</span>; added trainer1 and trainer2 as supplementary members with <span class="cmd">groupmod -U</span>.</span></div>
+    <div class="step"><span class="step-num">06</span><span class="step-text">Changed trainer3 default shell to <span class="cmd">/bin/sh</span> via <span class="cmd">usermod -s /bin/sh trainer3</span>.</span></div>
+    <div class="outcome">All policies verified with su &amp; id</div>
+  </section>
+
+  <footer class="footer">
+    <span>LINUX SYSADMIN · ADINUSA.ID</span>
+    <a href="https://indah0503.github.io/portfolio/" target="_blank">indah0503.github.io/portfolio →</a>
+  </footer>
+
+</body>
+</html>

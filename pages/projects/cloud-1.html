@@ -1,1 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWS 3-Tier Architecture — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #111111;
+      --bg3: #161616;
+      --teal: #2dd4bf;
+      --amber: #fbbf24;
+      --text-muted: #888;
+    }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 6rem 2rem 4rem;
+    }
+
+    .page-header-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--amber);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-header-title span { color: var(--teal); }
+
+    .page-header-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .challenge {
+      margin-bottom: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .challenge:last-child { border-bottom: none; }
+
+    .challenge-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--amber);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+
+    .challenge-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-bottom: 1.2rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .chip {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 0.2rem 0.5rem;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      align-items: baseline;
+    }
+
+    .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: var(--teal);
+      opacity: 0.6;
+      flex-shrink: 0;
+      min-width: 1.5rem;
+    }
+
+    .step-text {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .cmd {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--teal);
+      background: rgba(45, 212, 191, 0.07);
+      border: 1px solid rgba(45, 212, 191, 0.15);
+      padding: 0.1rem 0.4rem;
+    }
+
+    .outcome {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.2rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: #4ade80;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .outcome::before {
+      content: '';
+      display: inline-block;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: #4ade80;
+    }
+
+    .footer {
+      padding-top: 2rem;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      color: rgba(255,255,255,0.18);
+      letter-spacing: 0.08em;
+    }
+
+    .footer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <p class="page-header-label">Project I · AWS Cloud Architecture</p>
+    <h1 class="page-header-title">3-Tier <span>Architecture</span></h1>
+    <p class="page-header-sub">Amazon VPC &nbsp;·&nbsp; EC2 · RDS · Security Groups · NAT Gateway · Multi-AZ</p>
+
+    <!-- IMAGE: Architecture diagram — topology keseluruhan 3-tier (User/App/Data tier, subnet, SG, IGW, NAT).
+         Letakkan di sini tepat di bawah subtitle supaya pembaca langsung paham strukturnya sebelum membaca detail.
+         Rekomendasi: export dari draw.io / Lucidchart, ukuran ~900×500px, background transparan atau gelap. -->
+
+  </header>
+
+  <!-- A: Network -->
+  <section class="challenge">
+    <p class="challenge-label">Phase A · Network Configuration</p>
+    <h2 class="challenge-title">VPC, Subnets &amp; Routing</h2>
+    <div class="chip-row">
+      <span class="chip">Amazon VPC</span>
+      <span class="chip">Elastic IP</span>
+      <span class="chip">Internet Gateway</span>
+      <span class="chip">NAT Gateway</span>
+      <span class="chip">Route Tables</span>
+      <span class="chip">Security Groups</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Created a VPC with CIDR <span class="cmd">192.168.0.0/16</span> — serves as the isolated network boundary for all three tiers.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Provisioned 4 subnets: <span class="cmd">Public Subnet</span> (192.168.1.0/24) for the User Tier, and <span class="cmd">Private Subnet 1–3</span> for App and Data tiers. Private Subnet 3 uses a separate AZ for Multi-AZ fault tolerance.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">Allocated an <span class="cmd">Elastic IP</span> and attached an <span class="cmd">Internet Gateway</span> to the VPC — enables outbound internet access for the public subnet.</span></div>
+    <div class="step"><span class="step-num">04</span><span class="step-text">Deployed a <span class="cmd">NAT Gateway</span> in the public subnet using the Elastic IP — allows private subnet instances to reach the internet without being publicly exposed.</span></div>
+    <div class="step"><span class="step-num">05</span><span class="step-text">Created two route tables: public table routes <span class="cmd">0.0.0.0/0</span> to the Internet Gateway; private table routes <span class="cmd">0.0.0.0/0</span> to the NAT Gateway. Each subnet was associated with its respective table.</span></div>
+    <div class="step"><span class="step-num">06</span><span class="step-text">Defined 4 Security Groups — <span class="cmd">BastionHost-SG</span>, <span class="cmd">WebServer-SG</span>, <span class="cmd">AppServer-SG</span>, and <span class="cmd">DB-SG</span> — with least-privilege inbound rules referencing each other's SG as source instead of open CIDR ranges.</span></div>
+    <div class="outcome">Network topology established — all tiers isolated and routed correctly</div>
+  </section>
+
+  <!-- B: EC2 -->
+  <section class="challenge">
+    <p class="challenge-label">Phase B · Compute Configuration</p>
+    <h2 class="challenge-title">EC2 Instance Deployment</h2>
+    <div class="chip-row">
+      <span class="chip">Amazon EC2</span>
+      <span class="chip">Amazon Linux 2023</span>
+      <span class="chip">Bastion Host</span>
+      <span class="chip">Apache / LAMP</span>
+      <span class="chip">MariaDB</span>
+      <span class="chip">User Data</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Launched <span class="cmd">Bastion Host</span> (t3.micro) in the public subnet — acts as a secure jump server to reach private instances via SSH. Auto-assign public IP enabled.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Launched <span class="cmd">Web Server</span> (t3.micro) in the public subnet with a User Data bootstrap script that installs <span class="cmd">httpd</span>, the LAMP stack, and enables Apache on startup.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">Launched <span class="cmd">App Server</span> (t3.micro) in Private Subnet 1 — no public IP assigned. User Data bootstraps <span class="cmd">mariadb105-server</span> and starts the service automatically.</span></div>
+    <div class="outcome">3 instances running — 2 public, 1 private</div>
+  </section>
+
+  <!-- C: RDS -->
+  <section class="challenge">
+    <p class="challenge-label">Phase C · Data Tier</p>
+    <h2 class="challenge-title">RDS Database with Multi-AZ</h2>
+    <div class="chip-row">
+      <span class="chip">Amazon RDS</span>
+      <span class="chip">MySQL / Aurora</span>
+      <span class="chip">DB Subnet Group</span>
+      <span class="chip">Multi-AZ</span>
+      <span class="chip">Private Subnet</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Created a <span class="cmd">DB Subnet Group</span> spanning Private Subnets 3 and 4 across two Availability Zones — prerequisite for Multi-AZ RDS deployment.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Provisioned an RDS MySQL instance assigned to the DB Subnet Group, with the <span class="cmd">DB-SG</span> restricting inbound traffic exclusively to App Server and Bastion Host security groups.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">Multi-AZ configuration ensures automatic failover to a standby replica in the second AZ if the primary instance becomes unavailable — no manual intervention required.</span></div>
+    <div class="outcome">Database deployed — highly available across two AZs</div>
+  </section>
+
+  <!-- D: Testing -->
+  <section class="challenge">
+    <p class="challenge-label">Phase D · Connectivity Testing</p>
+    <h2 class="challenge-title">End-to-End Validation via PuTTY</h2>
+    <div class="chip-row">
+      <span class="chip">PuTTY / SSH</span>
+      <span class="chip">pscp</span>
+      <span class="chip">Bastion Tunneling</span>
+      <span class="chip">ping</span>
+      <span class="chip">MySQL CLI</span>
+    </div>
+    <div class="step"><span class="step-num">01</span><span class="step-text">Connected to <span class="cmd">Bastion Host</span> via PuTTY using its public IP — validated SSH access from external network.</span></div>
+    <div class="step"><span class="step-num">02</span><span class="step-text">Transferred the <span class="cmd">.pem</span> key file from local Windows machine to the Bastion Host using <span class="cmd">pscp</span> over port 22 — needed for onward SSH into private instances.</span></div>
+    <div class="step"><span class="step-num">03</span><span class="step-text">From the Bastion Host, SSH'd into the <span class="cmd">App Server</span> using the transferred .pem file — confirmed private subnet reachability through the jump host.</span></div>
+    <div class="step"><span class="step-num">04</span><span class="step-text">Ran <span class="cmd">ping</span> to the Web Server's private IP from the App Server — validated cross-tier ICMP connectivity allowed by the Security Group rules.</span></div>
+    <div class="step"><span class="step-num">05</span><span class="step-text">Established a MySQL connection from App Server to the RDS endpoint — confirmed port 3306 access is open between the App Server and Database tiers.</span></div>
+
+    <!-- IMAGE: Screenshot terminal — output sukses koneksi MySQL ke RDS endpoint dari App Server.
+         Opsional tapi kuat sebagai bukti validasi akhir. Crop rapi, cukup baris koneksi + prompt MySQL-nya saja. -->
+
+    <div class="outcome">All tiers connected — architecture fully validated</div>
+  </section>
+
+  <footer class="footer">
+    <span>AWS CLOUD · 3-TIER ARCHITECTURE</span>
+    <a href="https://indah0503.github.io/portfolio/" target="_blank">indah0503.github.io/portfolio →</a>
+  </footer>
+
+</body>
+</html>
